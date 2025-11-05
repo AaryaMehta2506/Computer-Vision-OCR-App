@@ -1,78 +1,53 @@
 Data Science Advance Project
-# Computer Vision Projects
+# Computer Vision OCR App
 
-## Project Overview
-This project builds a Fake News Detection System trained on a dataset containing real and fake news articles. It uses TF-IDF vectorization and a Logistic Regression or Naive Bayes classifier to analyze the textual patterns of news content. The system is deployed with Streamlit for easy interaction — users can enter a news statement and instantly see if it’s fake or real, along with a confidence score.
+A lightweight, fully local OCR app that extracts text from images using Tesseract OCR, OpenCV, and Streamlit. Paste this entire content into README.md in your repository.
 
-## Key Features
-- Text preprocessing with cleaning, stopword removal, and lemmatization
-- TF-IDF vectorization for feature extraction
-- Model trained to achieve around 98–99% accuracy
-- Streamlit web interface for real-time predictions
-- Confidence score displayed for each prediction
-- Automatically loads a trained model (or trains one if not found)
+Features
+- Local OCR processing using Tesseract
+- Streamlit web interface for image upload and text extraction
+- Simple setup and usage instructions for Windows
 
-## Why Some True Statements Are Flagged as Fake
-Short or overly simple sentences such as "Donald Trump is a president of America" may be predicted as fake because the model was trained mostly on full-length news articles. It assumes "fake" when:
-- The text resembles clickbait or incomplete statements seen in fake samples
-- The statement lacks journalistic context such as sources or structure
-- The model detects political figure mentions that often correlated with fake news in the dataset
+Prerequisites
+- Python 3.9 or later
+- 16 GB RAM recommended (works on lower RAM for small models)
+- Tesseract OCR installed on your system (Windows instructions included)
 
-To improve predictions, provide more context. For example:
-"Donald Trump served as the 45th President of the United States, according to official records."
-This provides linguistic structure and facts, which help the model classify more accurately.
+Quick setup (Windows)
+  1. Install Python and ensure python and pip are on PATH.
+  2. Install Tesseract (Windows):
+     - Download the Windows installer from the UB Mannheim builds:
+       https://github.com/UB-Mannheim/tesseract/wiki
+     - Run the installer and note the installation path (default: C:\Program Files\Tesseract-OCR\).
+     - During installation, enable the option to add Tesseract to your system PATH if available.
+     - Verify installation:
+       Open a new Command Prompt and run:
+         tesseract --version
+       You should see Tesseract version information.
 
-## Tech Stack
-- Python 3
-- Pandas, NumPy
-- NLTK (for stopwords and lemmatization)
-- Scikit-learn (for TF-IDF and model training)
-- Streamlit (for deployment)
-- Joblib (for saving/loading models)
+Project setup (one-time)
+  1. Clone or create project folder and place app.py and chatbot.py as needed.
+  2. Create and activate a virtual environment (recommended):
+     Windows:
+       python -m venv venv
+       venv\Scripts\activate
+     macOS / Linux:
+       python3 -m venv venv
+       source venv/bin/activate
+  3. Install Python dependencies:
+     pip install streamlit opencv-python pytesseract Pillow numpy
 
-## Dataset 
-link : https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+Run the app
+  1. Ensure Tesseract is installed and reachable (either in PATH or configured via pytesseract.pytesseract.tesseract_cmd).
+  2. Activate your Python environment.
+  3. Start Streamlit:
+     streamlit run app.py
+  4. Open the URL printed by Streamlit (usually http://localhost:8501).
 
-## Folder Structure
-Fake-News-Detection/
-│
-├── fake_news_detection.ipynb   # Model training and evaluation
-├── app.py                      # Streamlit application
-├── vectorizer.pkl              # Saved TF-IDF vectorizer
-├── model.pkl                   # Saved ML model
-├── true.csv                    # True news dataset
-├── fake.csv                    # Fake news dataset
-└── README.md                   # Project documentation
-
-## How to Run
-1. Install dependencies
-   pip install -r requirements.txt
-
-2. Run the Streamlit app
-   streamlit run app.py
-
-3. Interact with the app  
-   Enter any news content and click "Check News" to get:
-   - Real or Fake label
-   - Confidence percentage
-
-## Model Performance
-Accuracy: 98.8%  
-Precision: 0.99  
-Recall: 0.99  
-F1-score: 0.99  
-
-## Example Predictions
-Input: "The U.S. Senate passed a new infrastructure bill on Tuesday."  
-Output: Real News (Confidence: 97%)
-
-Input: "NASA confirms Earth will go dark for 15 days next month."  
-Output: Fake News (Confidence: 99%)
-
-## Future Improvements
-- Add multiple ML models for comparison
-- Include article source verification
-- Integrate live fact-checking API
+File structure
+  Chatbot-OCR/
+  ├── app.py
+  └── requirements.txt
 
 ## Contributing
 Contributions are welcome!
